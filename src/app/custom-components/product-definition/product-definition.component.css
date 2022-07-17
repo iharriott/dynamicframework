@@ -1,0 +1,61 @@
+.entity {
+   
+    margin: 3rem 0;
+}
+
+.array-first {
+    padding-left: 8rem;
+}
+
+.remove {
+    padding-left: 21rem;
+}
+
+.heading {
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+}
+
+.remove-validations {
+    padding-left: -3rem;
+}
+
+.remove-fields {
+   
+    margin-right: 200px;
+}
+
+.remove-value { 
+    padding-left: 21rem;
+}
+
+.legend {
+    margin-top: 10px;
+}
+
+.state {
+    padding-left: .2rem;
+    margin-bottom: 0px;
+    padding-bottom: 0rem;
+    
+    width: 20%;
+    height: 10%;  
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 40%;
+  }
+
+  heading-title {
+    color: #004a9f;   
+  }
+
+  
+
+  

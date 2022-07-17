@@ -1,0 +1,87 @@
+[
+    {
+     "key": "SchemaVersion",
+      "type": "input",
+      "options": {
+       "label": "Schema Version",
+       "placeholder": "Schemal version",
+       "required": false
+      }
+    },
+      {
+       "key": "LineOfBusiness",
+        "type": "input",
+        "options": {
+            "label": "Line Of Business",
+            "placeholder": "Line Of Business",
+            "required": false
+           }
+      },
+      {
+        "key": "State",
+         "type": "input",
+         "options": {
+             "label": "State",
+             "placeholder": "State",
+             "required": false
+            }
+       },
+       {
+        "key": "ProductName",
+         "type": "input",
+         "options": {
+             "label": "Product Name",
+             "placeholder": "ProductName",
+             "required": false
+            }
+       },
+       {
+        "key": "ProductVersion",
+         "type": "input",
+         "options": {
+             "label": "Product Version",
+             "placeholder": "Product Version",
+             "required": false
+            }
+       },
+       {
+        "key": "Entities",
+        "type": "array",
+        "options": {
+          "children":[{
+           "key": "EntityType",
+           "type": "input",
+           "options":{
+               "label": "Entity Type",
+               "placeholder": "Entity Type"
+           }
+          },
+          {
+           "key": "Description",
+           "type": "input",
+           "options":{
+               "label": "Description",
+               "placeholder": "Description"
+           }
+          },
+          {
+            "key": "Cardinality",
+            "type": "input",
+            "options":{
+                "label": "Cardinality",
+                "placeholder": "Cardinality"
+            }
+           },
+           {
+            "key": "Coverages",
+            "type": "input",
+            "options":{
+                "label": "Coverages",
+                "placeholder": "Coverages"
+            }
+           }       
+       ]
+        }
+       }
+      
+   ]

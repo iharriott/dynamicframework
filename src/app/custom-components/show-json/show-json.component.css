@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    background: #fff;
+}
+
+.showjson {
+    margin-left: 50%;
+    margin-right: 0px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 20px;
+}
+
+.large-area {
+ height: 100%;
+ padding: 20px;
+ margin-top: 10px;
+ box-sizing: border-box;
+ color: white;
+ background: #004a9f;
+ border: none;
+ border-radius: 10px;
+ outline: none;
+ resize: none;
+ font-family: monospace;
+ /* transition: background 0.25s, color 0.25s; */
+}
+
+.large-area:hover,
+.large-area:focus { 
+    background: #004a9f;
+}
+
+.large-area:focus { 
+    color: lightgrey;
+}
+
+.controls__button {
+    padding: 8px 14px;
+    width: 20%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #3396FF;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.controls__button:active {
+    background: #00705a;
+}
+
+.controls_button-formatter {
+    padding: 30px 30px;
+    width: 10%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #009578;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.drop-zone {
+    max-width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 10px; 
+    margin-bottom: 40px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;  
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}

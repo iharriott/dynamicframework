@@ -1,0 +1,304 @@
+<div class="row" style="font-size: 12px" >
+	<div class="col-md-8">
+   <ng-container>
+	   <h1 class="heading  heading-title">Product Definition Form</h1>
+   <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+	 <div *ngFor="let c of productDefinitionForm; let idx0 = index">
+	  <div [ngSwitch]="c.type">
+	
+		 <mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
+			<mat-label>{{c.options.label}}</mat-label>
+			<input matInput placeholder={{c.options.label}} [formControlName]="c.key" (blur)="onCategoryChange($event)" >
+		  </mat-form-field>
+   
+		 <mat-form-field class="state" *ngSwitchCase="'select'"  appearance="fill">
+			<mat-label>{{c.options.label}}</mat-label>
+			<mat-select [formControlName]="c.key" (selectionChange)="onCategoryChange($event)" >
+			  <mat-option *ngFor="let value of c.options.values" [value]="value.value" >
+				{{value.viewValue}}
+			  </mat-option>
+			</mat-select>
+		  </mat-form-field>
+
+		  <mat-form-field class="state" *ngSwitchCase="'date'" appearance="fill">
+			<mat-label>{{c.options.label}}</mat-label>
+			<input matInput [matDatepicker]="picker" [formControlName]="c.key" (blur)="onCategoryChange($event)">
+			<mat-hint>MM/DD/YYYY</mat-hint>
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		  </mat-form-field>
+   
+		 <mat-slide-toggle *ngSwitchCase="'boolean'"  name="c.key">{{c.options.label}}</mat-slide-toggle>
+	   
+		 <div class="array-first" *ngSwitchCase="'array'" [formArrayName]="c.key">
+		   
+		  <div *ngFor="let group of getEntitiesArray(c.key).controls; let i = index; let first = first">
+			<div class="row legend">
+				<div class="col-sm-2">
+					<legend>{{c.key }} {{i + 1}}</legend>
+				</div>
+				<div class="col-sm-2">
+					<button  id="entity" mat-button color="primary" type="button" mat-button (click)="addArrayGroup(c.key, c.options.children)">
+						Add {{c.key}}
+					<span class="glyphicon glyphicon-plus-sign"></span> 
+					</button>
+				</div>
+				<div class="col-sm-2">
+					<button  id="entity" mat-button color="warn" type="button" mat-button (click)="removeArrayGroup(c.key, i)">
+						Remove {{c.key}} {{i + 1}}
+					<span class="glyphicon glyphicon-minus-sign"></span> 
+					</button>
+				</div>
+
+			</div>
+		  
+		   <div [formGroupName]="i">
+			<div *ngFor="let entitychild of c.options.children">
+			  <div *ngIf="entitychild.type !='array'">
+				<div [ngSwitch]="entitychild.type">
+
+				 <mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
+					<mat-label>{{entitychild.options.label}}</mat-label>
+					<input matInput placeholder={{entitychild.options.label}} [formControlName] ="entitychild.key" (blur)="onCategoryChange($event)">
+				  </mat-form-field> 
+
+				  <mat-form-field class="state" *ngSwitchCase="'select'"  appearance="fill">
+					<mat-label>{{entitychild.options.label}}</mat-label>
+					<mat-select   [formControlName]="entitychild.key" (selectionchange)="onCategoryChange($event)">
+					  <mat-option *ngFor="let value of entitychild.options.values" [value]="value.value">
+						{{value.viewValue}}
+					  </mat-option>
+					</mat-select>
+				  </mat-form-field> 
+
+				 <mat-slide-toggle *ngSwitchCase="'boolean'"  name="entitychild.key" [formControlName] ="entitychild.key">{{entitychild.options.label}}</mat-slide-toggle>
+
+				</div>
+   
+			  </div>
+			  <div class="array-first" *ngIf="entitychild?.type =='array'" [formArrayName]="entitychild?.key">
+			   <div class="row">
+				  
+				   <button *ngIf="entitychild.type =='array'" id="basic" mat-button color="primary" type="button" mat-button (click)="addFields(c.key,i,entitychild.key,entitychild.options.children)">
+					   Add {{entitychild.key}}
+					   <span class="glyphicon glyphicon-plus-sign"></span> 
+					 </button>
+			   </div>
+			   
+			   
+				<div *ngFor="let group of getFieldsArray(c.key,i,entitychild.key).controls; let idx = index; let last = last;">
+					<div class="row legend">
+						<div class="col-sm-2">
+							<legend>{{entitychild.key}} {{idx + 1}}</legend>
+						</div>
+						<div class="col-sm-2">
+							<button *ngIf="entitychild.type =='array'" id="basic" mat-button color="primary" type="button" mat-button (click)="addFields(c.key,i,entitychild.key,entitychild.options.children)">
+								Add {{entitychild.key}}
+								<span class="glyphicon glyphicon-plus-sign"></span> 
+							  </button>
+						</div>
+						<div *ngIf="first" class="col-sm-2">
+							<button  class="remove-fields"  id="basic" type="button" mat-button color="warn" mat-button (click)="removeFields(c.key,i,entitychild.key, idx)">
+								Remove {{entitychild.key}} {{ idx + 1}}
+								<span class="glyphicon glyphicon-minus-sign"></span> 
+							  </button>
+						</div>
+					</div>
+					
+				 <div  [formGroupName]="idx">
+				  <div *ngFor="let field of entitychild?.options?.children">
+				   <div *ngIf="field.type !='array'">
+					<div  [ngSwitch]="field.type">
+						
+					   <mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
+						<mat-label>{{field.options.label}}</mat-label>
+						<input matInput placeholder={{field.options.label}} [formControlName] ="field.key" (blur)="onCategoryChange($event)" >
+					  </mat-form-field> 
+					  <mat-form-field class="state" *ngSwitchCase="'select'"  appearance="fill">
+						<mat-label>{{field.options.label}}</mat-label>
+						<mat-select   [formControlName]="field.key" (selectionchange)="onCategoryChange($event)">
+						  <mat-option *ngFor="let value of field?.options?.values" [value]="value.value">
+							{{value.viewValue}}
+						  </mat-option>
+						</mat-select>
+					  </mat-form-field> 
+
+					   <mat-slide-toggle *ngSwitchCase="'boolean'" [formControlName] ="field.key" name="c.key">{{field.options.label}}</mat-slide-toggle>
+
+					</div>
+   
+				   </div>
+				   <div class="array-first" *ngIf="field.type =='array'" [formArrayName]="field.key">
+					   <div class="row legend">
+						 
+						   <button id="basic" mat-button color="primary" type="button" mat-button (click)="addValidations(c.key,i,entitychild.key,idx, field.key, field.options.children)">
+							   Add {{field.key}}
+							   <span class="glyphicon glyphicon-plus-sign"></span> 
+							 </button>
+					   </div>
+					   <div *ngFor="let group of getValidationArray(c.key,i,entitychild.key,idx,field.key).controls; let idx2 = index;">
+						<div class="row legend">
+							<div class="col-sm-3">
+								<legend>{{field.key}} {{idx2 + 1}}</legend>
+							</div>
+							<div class="col-sm-3">
+								<button id="basic" mat-button color="primary" type="button" mat-button (click)="addValidations(c.key,i,entitychild.key,idx, field.key, field.options.children)">
+									Add {{field.key}}
+									<span class="glyphicon glyphicon-plus-sign"></span> 
+								  </button>
+							</div>
+							<div class="col-sm-3">
+								<button  id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValidations(c.key,i,entitychild.key, idx,field.key,idx2)">
+									Remove {{field.key}} {{idx2 + 1}}
+									<span class="glyphicon glyphicon-minus-sign"></span> 
+								  </button>
+							</div>
+						</div>
+						
+					   <div [formGroupName]="idx2">
+						   <div *ngFor="let validation of field.options.children">
+							   <div *ngIf="validation.type !='array'">
+								<div class="row">
+                                  <div [ngSwitch]="validation.type">
+
+									<mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
+										<mat-label>{{validation.options.label}}</mat-label>
+										<input matInput placeholder={{validation.options.label}} [formControlName]="validation.key" (blur)="onCategoryChange($event)" >
+									  </mat-form-field>
+							   
+									 <mat-form-field class="state" *ngSwitchCase="'select'"  appearance="fill">
+										<mat-label>{{validation.options.label}}</mat-label>
+										<mat-select [formControlName]="validation.key" (selectionChange)="onCategoryChange($event)" >
+										  <mat-option *ngFor="let value of validation.options.values" [value]="value.value" >
+											{{value.viewValue}}
+										  </mat-option>
+										</mat-select>
+									  </mat-form-field>
+							
+									  <mat-form-field class="state" *ngSwitchCase="'date'" appearance="fill">
+										<mat-label>{{validation.options.label}}</mat-label>
+										<input matInput [matDatepicker]="picker" [formControlName]="validation.key" (blur)="onCategoryChange($event)">
+										<mat-hint>MM/DD/YYYY</mat-hint>
+										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+										<mat-datepicker #picker></mat-datepicker>
+									  </mat-form-field>
+							   
+									 <mat-slide-toggle *ngSwitchCase="'boolean'"  name="validation.key">{{validation.options.label}}</mat-slide-toggle>
+
+								  </div>
+									
+								  </div>
+								 		
+							   </div>
+							  	  
+							   <div class="array-first" *ngIf="validation.type =='array'" [formArrayName]="validation.key">
+								
+								<div class="row legend">
+									<div class="col-sm-4">
+										<legend>{{validation.key}} {{idx2 + 1}}</legend>
+									</div>
+									<div class="col-sm-3">
+										<button id="basic" mat-button color="primary" type="button" mat-button (click)="addValues(c.key,i,entitychild.key,idx, field.key,idx2, validation.key, validation.options.children)">
+											Add {{validation.key}}
+											<span class="glyphicon glyphicon-plus-sign"></span> 
+										  </button>
+									</div>
+									
+									
+								</div>
+								<div *ngFor="let group of getValidValuesArray(c.key,i,entitychild.key,idx,field.key, idx2, validation.key).controls; let idx3 = index; let first = first; let last = last;">
+									<!-- <legend>{{validation.key}} {{idx2 + 1}}</legend> -->
+									<div [formGroupName]="idx3">
+										<div *ngFor="let value of validation.options.children">
+											
+											<div *ngIf="value.type !='array'">
+												<div class="row">
+                                                   
+                                                    <div [ngSwitch]="value.type">
+
+                                                        <mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
+                                                            <mat-label>{{value.options.label}}</mat-label>
+                                                            <input matInput placeholder={{value.options.label}} [formControlName]="value.key" (blur)="onCategoryChange($event)" >
+                                                          </mat-form-field>
+                                                   
+                                                         <mat-form-field class="state" *ngSwitchCase="'select'"  appearance="fill">
+                                                            <mat-label>{{value.options.label}}</mat-label>
+                                                            <mat-select [formControlName]="value.key" (selectionChange)="onCategoryChange($event)" >
+                                                              <mat-option *ngFor="let value of value.options.values" [value]="value.value" >
+                                                                {{value.viewValue}}
+                                                              </mat-option>
+                                                            </mat-select>
+                                                          </mat-form-field>
+                                                
+                                                          <mat-form-field class="state" *ngSwitchCase="'date'" appearance="fill">
+                                                            <mat-label>{{value.options.label}}</mat-label>
+                                                            <input matInput [matDatepicker]="picker" [formControlName]="value.key" (blur)="onCategoryChange($event)">
+                                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                            <mat-datepicker #picker></mat-datepicker>
+                                                          </mat-form-field>
+                                                   
+                                                         <mat-slide-toggle *ngSwitchCase="'boolean'"  name="value.key">{{value.options.label}}</mat-slide-toggle>
+
+                                                    </div>
+                                                
+													<div class="col-sm-2">
+														<div class="row remove-validations">		
+															<button  id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValues(c.key,i,entitychild.key, idx,field.key,idx2, validation.key,idx3)">
+															
+															  <span class="glyphicon glyphicon-minus-sign"></span> 
+															</button>
+														</div>
+													</div>
+													
+	
+												</div>
+												
+										   </div>
+										</div>
+									</div>
+							
+								</div>
+								
+							   </div>
+
+						   </div>
+					   </div>
+   
+   
+					   </div>
+   
+   
+				   </div>
+				   
+	
+				  </div>
+				 </div>
+				</div>
+			  </div>
+   
+			</div>
+		   </div>
+		   
+		  </div>
+		
+		 </div>
+	   
+	  </div>
+			   
+	 </div>
+   
+	 <button  id="submit" mat-button color="primary" type="submit" mat-button (click)="submitForm()">
+	   Submit
+   <span class="glyphicon glyphicon-plus-sign"></span> 
+   </button>
+   
+   </form>
+   
+   </ng-container>
+   </div>
+   <div class="col-md-4">
+	   <app-show-json [jsonString]="jsonOutput">
+	   </app-show-json>
+   </div>
+   </div>

@@ -1,0 +1,197 @@
+[
+    {
+     "key": "SchemaVersion",
+      "type": "input",
+      "options": {
+       "label": "Schema Version",
+       "placeholder": "Schemal version",
+       "required": false
+      }
+    },
+      {
+       "key": "LineOfBusiness",
+        "type": "select",
+        "options": {
+            "label": "Line Of Business",
+            "placeholder": "Line Of Business",
+            "required": false,
+            "values":[ {"value": "CI", "viewValue": "Car Insurance"},
+                {"value": "HM", "viewValue": "Home Insurance"},
+                {"value": "LF", "viewValue": "Life Insurance"}]
+           }
+      },
+      {
+        "key": "State",
+         "type": "select",
+         "options": {
+             "label": "State",
+             "placeholder": "State",
+             "required": false,
+             "values":[ {"value": "NY", "viewValue": "New York"},
+                {"value": "CA", "viewValue": "California"},
+                {"value": "TX", "viewValue": "Texas"}]
+            }
+       },
+       {
+        "key": "ProductName",
+         "type": "input",
+         "options": {
+             "label": "Product Name",
+             "placeholder": "ProductName",
+             "required": false
+            }
+       },
+       {
+        "key": "ProductVersion",
+         "type": "input",
+         "options": {
+             "label": "Product Version",
+             "placeholder": "Product Version",
+             "required": false
+            }
+       },
+       {
+        "key": "effectiveDate",
+         "type": "date",
+         "options": {
+             "label": "Effective Date",
+             "placeholder": "Effective Date",
+             "required": false
+            }
+       },
+       {
+        "key": "expiryDate",
+         "type": "date",
+         "options": {
+             "label": "Expiry Date",
+             "placeholder": "Expiry Date",
+             "required": false
+            }
+       },
+       {
+        "key": "Entities",
+        "type": "array",
+        "options": {
+          "children":[{
+           "key": "EntityType",
+           "type": "select",
+           "options":{
+               "label": "Entity Type",
+               "placeholder": "Entity Type",
+               "values":[ {"value": "EN1", "viewValue": "Entity 1"},
+               {"value": "EN2", "viewValue": "Entity 2"},
+               {"value": "EN3", "viewValue": "Entity 3"}]
+           }
+          },
+          {
+           "key": "Description",
+           "type": "input",
+           "options":{
+               "label": "Description",
+               "placeholder": "Description"
+           }
+          },
+          {
+            "key": "Cardinality",
+            "type": "input",
+            "options":{
+                "label": "Cardinality",
+                "placeholder": "Cardinality"
+            }
+           },
+           {
+            "key": "Coverages",
+            "type": "select",
+            "options":{
+                "label": "Coverages",
+                "placeholder": "Coverages",
+                "values":[ {"value": "COV1", "viewValue": "Coverage 1"},
+                {"value": "COV2", "viewValue": "Coverage 2"},
+                {"value": "COV3", "viewValue": "Coverage 3"}]
+            }
+           },
+           {
+            "key": "Fields",
+            "type": "array",
+            "options":{
+                "children": [
+                    {
+                        "key": "Name",
+                        "type": "input",
+                        "options":{
+                            "label": "Name",
+                            "placeholder": "Name"
+                        }
+                       },
+                       {
+                        "key": "DataType",
+                        "type": "input",
+                        "options":{
+                            "children": [],
+                            "label": "DataType",
+                            "placeholder": "DataType",
+                            "values":[]
+                        }
+                       },
+                       {
+                        "key": "IsRequired",
+                        "type": "boolean",
+                        "options":{
+                            "label": "IsRequired",
+                            "placeholder": "IsRequired"
+                        }
+                       },
+                       {
+                        "key": "Validations",
+                        "type": "array",
+                        "options":{
+                            "children": [
+                    {
+                        "key": "Name",
+                        "type": "input",
+                        "options":{
+                            "label": "Name",
+                            "placeholder": "Name"
+                        }
+                       },
+                       {
+                        "key": "ValidationType",
+                        "type": "input",
+                        "options":{
+                            "label": "ValidationType",
+                            "placeholder": "ValidationType"
+                        }
+                       },
+                       {
+                        "key": "ValidValues",
+                        "type": "array",
+                        "options":{
+                            "children": [
+                                {
+                                    "key": "value",
+                                    "type": "input",
+                                    "options":{
+                                        "label": "value",
+                                        "placeholder": "Value"
+                                    }
+                                   }
+                            ],
+                            "label": "ValidValues",
+                            "placeholder": "ValidValues"
+                        }
+                       }      
+                      ],
+                            "label": "Validations",
+                            "placeholder": "Validations"
+                        }
+                       }
+                ],
+                "label": "Fields",
+                "placeholder": "Fields"
+            }
+           }
+       ]
+        }
+       }
+      
+   ]

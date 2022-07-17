@@ -1,0 +1,133 @@
+[    
+{
+    "key": "FirstName",
+     "type": "input",
+     "options": {
+      "children": [],
+      "label": "First Name",
+      "placeholder": "First Name",
+      "required": false,
+      "values":[]
+     }
+   },
+    {
+     "key": "LastName",
+      "type": "input",
+      "options": {
+        "children": [],
+       "label": "Last Name",
+       "placeholder": "Last Name",
+       "required": false,
+       "values":[]
+      }
+    },
+    {
+        "key": "Address",
+         "type": "input",
+         "options": {
+         "children": [],
+          "label": "Address",
+          "placeholder": "Address",
+          "required": false,
+          "values":[]
+         }
+       },
+       {
+        "key": "City",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "City",
+             "placeholder": "City",
+             "required": false,
+             "values":[ {"value": "LA", "viewValue": "Los Angeles"},
+                {"value": "LV", "viewValue": "Las Vegas"},
+                {"value": "ATL", "viewValue": "Atlanta"}]
+            }
+       },
+     
+      {
+        "key": "State",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "State",
+             "placeholder": "State",
+             "required": false,
+             "values":[ 
+                {"value": "CA", "viewValue": "California"},
+                {"value": "GA", "viewValue": "Georgia"},
+                {"value": "NV", "viewValue": "Nevada"}]
+            }
+       },
+       {
+        "key": "Zipcode",
+         "type": "input",
+         "options": {
+            "children": [],
+             "label": "Zip",
+             "placeholder": "Zipcode",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "MaritalStatus",
+         "type": "boolean",
+         "options": {
+            "children": [],
+             "label": "Married",
+             "placeholder": "MaritalStatus",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "dob",
+         "type": "date",
+         "options": {
+            "children": [],
+             "label": "BirthDate",
+             "placeholder": "BirthDate",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "Phone",
+        "type": "array",
+        "options": {
+          "children":[
+          {
+           "key": "home",
+           "type": "input",
+           "options":{
+               "label": "Home",
+               "placeholder": "Home",
+               "values":[]
+           }
+          },
+          {
+            "key": "Cell",
+            "type": "input",
+            "options":{
+                "children": [],
+                "label": "Cell",
+                "placeholder": "Cell",
+                "values":[]
+            }
+           },
+           {
+            "key": "work",
+            "type": "input",
+            "options":{
+                "children": [],
+                "label": "Work",
+                "placeholder": "Work",
+                "values":[]
+            }
+           }     
+       ]
+        }
+       }     
+   ]

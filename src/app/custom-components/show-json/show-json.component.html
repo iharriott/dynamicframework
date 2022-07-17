@@ -1,0 +1,11 @@
+<ng-container class="showjson">
+    <form action="">
+        <!-- <div class="row">
+            <button id="format" type ="button" class = "controls__button controls__button--format" >Format</button>
+            <button id="reset" class ="controls__button controls_button--reset" type="button">Reset All</button>
+        </div> -->
+        <div class="row">
+            <textarea matInput value="{{jsonString}}" id ="outputArea" rows="100" cols="50" class="large-area large-area--output" placeholder="Formatted JSON will be shown here..."  #showjson></textarea>
+        </div>
+    </form>
+</ng-container>
