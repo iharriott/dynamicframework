@@ -282,7 +282,7 @@ export class ProductDefinitionComponent implements OnInit {
   
     onCategoryChange(event: any){
       //this.myForm.get('mySelectControl').valueChanges.subscribe(value => { })
-      debugger;
+      //debugger;
     console.log(event);
     this.updateJson(this.myForm.value);
     this.updateJson$.subscribe(value => {
@@ -291,7 +291,7 @@ export class ProductDefinitionComponent implements OnInit {
     }
   
    addFields(parentKey: string,parentIdx: number,childkey: string, options: any[]){
-    debugger;
+    //debugger;
     console.log(`parentkey=${parentKey} parentIdx= ${parentIdx} childkey=${childkey} `);
     console.log(options);
     let control =  this.getFieldsArray(parentKey,parentIdx,childkey);
@@ -314,7 +314,7 @@ export class ProductDefinitionComponent implements OnInit {
     }
   
     addValidations(parentKey: string,parentIdx: number,fieldkey: string, fieldIdx: number,validationKey: string,  options: any[]){
-    debugger;
+    //debugger;
     console.log(`parentkey=${parentKey} parentIdx= ${parentIdx} childkey=${fieldkey} fieldIdx ${fieldIdx} validationKey ${validationKey}`);
     console.log(options);
     let control =  this.getValidationArray(parentKey,parentIdx,fieldkey, fieldIdx,validationKey);
@@ -358,10 +358,10 @@ export class ProductDefinitionComponent implements OnInit {
   
     removeValidations(parentKey: string,parentIdx: number,fieldkey: string, fieldIdx: number,validationKey: string, removeIdx: number){
     let control =  this.getValidationArray(parentKey,parentIdx,fieldkey, fieldIdx,validationKey);
-    if (control.length > 1){
+    //if (control.length > 1){
       control.removeAt(removeIdx);
       this.updateJson(this.myForm.value);
-    }	
+    //}	
     }
   
     removeValues(parentKey: string,parentIdx: number,fieldkey: string, fieldIdx: number,validationKey: string, validationIdx: number, valueKey: string, removeIdx: number){
@@ -509,10 +509,10 @@ export class ProductDefinitionComponent implements OnInit {
       
       removeFields(parentKey: string,parentIdx: number,childkey: string, childIdx: number){
       let control =  this.getFieldsArray(parentKey,parentIdx,childkey);
-      if (control.length > 1){
+      //if (control.length > 1){
         control.removeAt(childIdx);
         this.updateJson(this.myForm.value);
-      }	
+      //}	
       }
   
 

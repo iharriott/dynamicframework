@@ -28,7 +28,7 @@
 			<mat-datepicker #picker></mat-datepicker>
 		  </mat-form-field>
    
-		 <mat-slide-toggle *ngSwitchCase="'boolean'"  name="c.key">{{c.options.label}}</mat-slide-toggle>
+		 <mat-slide-toggle *ngSwitchCase="'boolean'"  [formControlName]="c.key" name="c.key">{{c.options.label}}</mat-slide-toggle>
 	   
 		 <div class="array-first" *ngSwitchCase="'array'" [formArrayName]="c.key">
 		   
