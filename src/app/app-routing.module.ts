@@ -4,7 +4,9 @@ import { ProductDefinitionComponent } from './custom-components/product-definiti
 
 const routes: Routes = [
   {path: 'product', component: ProductDefinitionComponent, data:{view: "product"}},
-  {path: 'people', component: ProductDefinitionComponent, data:{view: "people"}}
+  {path: 'people', component: ProductDefinitionComponent, data:{view: "people"}},
+  {path: 'capping', component: ProductDefinitionComponent, data:{view: "capping"}},
+  {path: 'characteristics', component: ProductDefinitionComponent, data:{view: "characteristics"}}
 ];
 
 @NgModule({

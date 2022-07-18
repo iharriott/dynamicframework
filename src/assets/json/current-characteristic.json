@@ -1,0 +1,85 @@
+[    
+{
+    "key": "SchemaVersion",
+     "type": "input",
+     "options": {
+      "children": [],
+      "label": "SchemaVersion",
+      "placeholder": "SchemaVersion",
+      "required": false,
+      "values":[]
+     }
+   },
+       {
+        "key": "Name",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "Name",
+             "placeholder": "Name",
+             "required": false,
+             "values":[ {"value": "CurrentMinorCount", "viewValue": "Current Minor Count"},
+                {"value": "CurrentAccidentCount", "viewValue": "Current Accident Count"},
+                {"value": "AccidentCount", "viewValue": "Accident Count"},
+                {"value": "CurrentSpeedCount", "viewValue": "Current Speed Count"}
+            ]
+            }
+       },  
+       {
+        "key": "Description",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "Description",
+             "placeholder": "Description",
+             "required": false,
+             "values":[ {"value": "Current Accident Count", "viewValue": "Current Accident Count"},
+                {"value": "Current Minor Count", "viewValue": "Current Minor Count"},
+                {"value": "Accident Count", "viewValue": "Accident Count"},
+                {"value": "Current Speed Count", "viewValue": "Current Speed Count"}
+            ]
+            }
+       },  
+       {
+        "key": "DataType",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "DataType",
+             "placeholder": "DataType",
+             "required": false,
+             "values":[ {"value": "int", "viewValue": "Integer"},
+                {"value": "string", "viewValue": "String"},
+                {"value": "boolean", "viewValue": "Boolean"}      
+            ]
+            }
+       },  
+       {
+        "key": "DefaultValue",
+         "type": "input",
+         "options": {
+            "children": [],
+             "label": "Default Value",
+             "placeholder": "Default Value",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "Validations",
+        "type": "array",
+        "options": {
+          "children":[
+          {
+           "key": "value",
+           "type": "input",
+           "options":{
+               "label": "value",
+               "placeholder": "value",
+               "values":[]
+           }
+          }       
+       ]
+        }
+       }       
+   ]

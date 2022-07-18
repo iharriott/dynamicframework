@@ -1,7 +1,7 @@
 <div class="row" style="font-size: 12px" >
 	<div class="col-md-8">
    <ng-container>
-	   <h1 class="heading  heading-title">Product Definition Form</h1>
+	   <h1 class="heading  heading-title">{{formHeading}} Form</h1>
    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
 	 <div *ngFor="let c of productDefinitionForm; let idx0 = index">
 	  <div [ngSwitch]="c.type">
@@ -34,18 +34,18 @@
 		   
 		  <div *ngFor="let group of getEntitiesArray(c.key).controls; let i = index; let first = first">
 			<div class="row legend">
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<legend>{{c.key }} {{i + 1}}</legend>
 				</div>
 				<div class="col-sm-2">
 					<button  id="entity" mat-button color="primary" type="button" mat-button (click)="addArrayGroup(c.key, c.options.children)">
-						Add {{c.key}}
+						Add 
 					<span class="glyphicon glyphicon-plus-sign"></span> 
 					</button>
 				</div>
 				<div class="col-sm-2">
 					<button  id="entity" mat-button color="warn" type="button" mat-button (click)="removeArrayGroup(c.key, i)">
-						Remove {{c.key}} {{i + 1}}
+						Remove 
 					<span class="glyphicon glyphicon-minus-sign"></span> 
 					</button>
 				</div>
@@ -71,7 +71,7 @@
 					</mat-select>
 				  </mat-form-field> 
 
-				 <mat-slide-toggle *ngSwitchCase="'boolean'"  name="entitychild.key" [formControlName] ="entitychild.key">{{entitychild.options.label}}</mat-slide-toggle>
+				 <mat-slide-toggle *ngSwitchCase="'boolean'"  [formControlName] ="entitychild.key" (change)="onCategoryChange($event)">{{entitychild.options.label}}</mat-slide-toggle>
 
 				</div>
    
@@ -84,22 +84,21 @@
 					   <span class="glyphicon glyphicon-plus-sign"></span> 
 					 </button>
 			   </div>
-			   
-			   
+			   	   
 				<div *ngFor="let group of getFieldsArray(c.key,i,entitychild.key).controls; let idx = index; let last = last;">
 					<div class="row legend">
-						<div class="col-sm-2">
+						<div class="col-sm-4">
 							<legend>{{entitychild.key}} {{idx + 1}}</legend>
 						</div>
 						<div class="col-sm-2">
 							<button *ngIf="entitychild.type =='array'" id="basic" mat-button color="primary" type="button" mat-button (click)="addFields(c.key,i,entitychild.key,entitychild.options.children)">
-								Add {{entitychild.key}}
+								Add 
 								<span class="glyphicon glyphicon-plus-sign"></span> 
 							  </button>
 						</div>
 						<div *ngIf="first" class="col-sm-2">
 							<button  class="remove-fields"  id="basic" type="button" mat-button color="warn" mat-button (click)="removeFields(c.key,i,entitychild.key, idx)">
-								Remove {{entitychild.key}} {{ idx + 1}}
+								Remove 
 								<span class="glyphicon glyphicon-minus-sign"></span> 
 							  </button>
 						</div>
@@ -138,18 +137,18 @@
 					   </div>
 					   <div *ngFor="let group of getValidationArray(c.key,i,entitychild.key,idx,field.key).controls; let idx2 = index;">
 						<div class="row legend">
-							<div class="col-sm-3">
+							<div class="col-sm-4">
 								<legend>{{field.key}} {{idx2 + 1}}</legend>
 							</div>
 							<div class="col-sm-3">
 								<button id="basic" mat-button color="primary" type="button" mat-button (click)="addValidations(c.key,i,entitychild.key,idx, field.key, field.options.children)">
-									Add {{field.key}}
+									Add 
 									<span class="glyphicon glyphicon-plus-sign"></span> 
 								  </button>
 							</div>
 							<div class="col-sm-3">
 								<button  id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValidations(c.key,i,entitychild.key, idx,field.key,idx2)">
-									Remove {{field.key}} {{idx2 + 1}}
+									Remove 
 									<span class="glyphicon glyphicon-minus-sign"></span> 
 								  </button>
 							</div>
@@ -213,7 +212,7 @@
 											
 											<div *ngIf="value.type !='array'">
 												<div class="row">
-                                                   
+                                                   <div class="col-sm-6">
                                                     <div [ngSwitch]="value.type">
 
                                                         <mat-form-field *ngSwitchCase="'input'" class="example-full-width state" appearance="fill">
@@ -240,54 +239,46 @@
                                                    
                                                          <mat-slide-toggle *ngSwitchCase="'boolean'"  name="value.key">{{value.options.label}}</mat-slide-toggle>
 
-                                                    </div>
-                                                
+                                                    </div>    
+                                                    <!-- <button  id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValues(c.key,i,entitychild.key, idx,field.key,idx2, validation.key,idx3)">
+                                                        Remove {{value.options.label}}
+                                                         <span class="glyphicon glyphicon-minus-sign"></span> 
+                                                       </button> -->
+                                                </div>
+                                                <div class="col-sm-2 remove-validations">
+                                                    <button id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValues(c.key,i,entitychild.key, idx,field.key,idx2, validation.key,idx3)">
+                                                        Remove 
+                                                         <span class="glyphicon glyphicon-minus-sign"></span> 
+                                                       </button>
+                                                </div>
 													<div class="col-sm-2">
-														<div class="row remove-validations">		
+														<!-- <div class="row remove-validations">		
 															<button  id="basic" type="button" mat-button color="warn" mat-button (click)=" removeValues(c.key,i,entitychild.key, idx,field.key,idx2, validation.key,idx3)">
-															
+															 Remove {{value.options.label}}
 															  <span class="glyphicon glyphicon-minus-sign"></span> 
 															</button>
-														</div>
+														</div> -->
 													</div>
-													
-	
-												</div>
-												
+												</div>				
 										   </div>
 										</div>
 									</div>
-							
-								</div>
-								
+								</div>				
 							   </div>
-
 						   </div>
 					   </div>
-   
-   
 					   </div>
-   
-   
 				   </div>
-				   
-	
 				  </div>
 				 </div>
 				</div>
 			  </div>
-   
 			</div>
-		   </div>
-		   
-		  </div>
-		
-		 </div>
-	   
-	  </div>
-			   
-	 </div>
-   
+		   </div>	   
+		  </div>		
+		 </div>	   
+	  </div>		   
+	 </div> 
 	 <button  id="submit" mat-button color="primary" type="submit" mat-button (click)="submitForm()">
 	   Submit
    <span class="glyphicon glyphicon-plus-sign"></span> 

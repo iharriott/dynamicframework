@@ -1,13 +1,15 @@
 
-import { OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { OnInit, SimpleChanges } from '@angular/core';
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import * as R from 'ramda';
-import ProductDefinitionJson from '../../../assets/product.json';
+import ProductDefinitionJson from '../../../assets/json/product.json';
 import { ActivatedRoute } from '@angular/router';
 //import ProductDefinitionJson from '../../../assets/product-entities.json';
-import PeopleJson from '../../../assets/person.json';
+import PeopleJson from '../../../assets/json/person.json';
+import CappingRuleJson from '../../../assets/json/capping-rule.json';
+import CurrentCharacteristicJson from '../../../assets/json/current-characteristic.json';
 
 
 export interface Options{
@@ -41,6 +43,7 @@ export class ProductDefinitionComponent implements OnInit {
   updateJson$ = this.showJsonSubject$.asObservable();
   myControl: AbstractControl<any, any>;
   view: string;
+  formHeading: string;
   
   range = new FormGroup({
       start: new FormControl<Date | null>(null),
@@ -56,19 +59,27 @@ export class ProductDefinitionComponent implements OnInit {
     // debugger;
 
      // Make the api call
-     this.getView(this.view);
+     //this.getView(this.view);
 
-     this.createControls(this.productDefinitionForm);
+     //this.createControls(this.productDefinitionForm);
   //  const arr = this.getFieldsArray('Entities',0,'Fields');
   //  const arr2 = <FormGroup>this.getEntitiesArray('Entities').controls[0].get('Fields');
    
    }
 
    ngOnInit(): void {
+    debugger;
     this.view = this.route.snapshot.data['view'];
     console.log(`view ${this.view}`);
+    this.getView(this.view);
 
-
+     this.createControls(this.productDefinitionForm);
+     const json = this.jsonOutput;
+    // this.updateJson(this.jsonOutput);
+    // this.updateJson$.subscribe(value => {
+    //   this.jsonOutput = value;
+    // });
+    
     //debugger;
    // this.myControl = this.getFormControlBykey('Fields');
   //const mynewControl =  this.logKeyValueParis(this.myForm, 'Validations');
@@ -86,14 +97,26 @@ export class ProductDefinitionComponent implements OnInit {
 
   getView(selection: string): string {
     switch(selection){
-      case "Product": {
-        //this.productDefinitionForm = ProductDefinitionJson;
+      case "product": {
+        this.productDefinitionForm = ProductDefinitionJson;
+        this.formHeading = "Product Definition";
         break;
       }
       case "people": {
          this.productDefinitionForm = PeopleJson;
+         this.formHeading = "Person Definition";
         break;
       }
+      case "capping": {
+        this.productDefinitionForm = CappingRuleJson;
+        this.formHeading = "Capping Rule Definition";
+       break;
+     }
+     case "characteristics": {
+      this.productDefinitionForm = CurrentCharacteristicJson;
+      this.formHeading = "Current Characteristics Definition";
+     break;
+   }
     }
 
     return null
@@ -259,7 +282,7 @@ export class ProductDefinitionComponent implements OnInit {
   
     onCategoryChange(event: any){
       //this.myForm.get('mySelectControl').valueChanges.subscribe(value => { })
-      //debugger;
+      debugger;
     console.log(event);
     this.updateJson(this.myForm.value);
     this.updateJson$.subscribe(value => {
@@ -268,6 +291,7 @@ export class ProductDefinitionComponent implements OnInit {
     }
   
    addFields(parentKey: string,parentIdx: number,childkey: string, options: any[]){
+    debugger;
     console.log(`parentkey=${parentKey} parentIdx= ${parentIdx} childkey=${childkey} `);
     console.log(options);
     let control =  this.getFieldsArray(parentKey,parentIdx,childkey);

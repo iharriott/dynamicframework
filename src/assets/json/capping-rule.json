@@ -1,0 +1,62 @@
+[    
+{
+    "key": "SchemaVersion",
+     "type": "input",
+     "options": {
+      "children": [],
+      "label": "SchemaVersion",
+      "placeholder": "SchemaVersion",
+      "required": false,
+      "values":[]
+     }
+   },
+       {
+        "key": "EntityType",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "Entity Type",
+             "placeholder": "Entity Type",
+             "required": false,
+             "values":[ {"value": "CappingRule", "viewValue": "Capping Rule"},
+                {"value": "E2", "viewValue": "Entity Type 2"},
+                {"value": "E2", "viewValue": "Entity Type 3"}]
+            }
+       },  
+       {
+        "key": "DefaultGraduatedCappingLevel",
+         "type": "input",
+         "options": {
+            "children": [],
+             "label": "DefaultGraduated Capping Level",
+             "placeholder": "DefaultGraduated Capping Level",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "IsApplicable",
+         "type": "boolean",
+         "options": {
+            "children": [],
+             "label": "IsApplicable",
+             "placeholder": "IsApplicable",
+             "required": false,
+             "values":[]
+            }
+       },
+       {
+        "key": "CappingLevel",
+         "type": "select",
+         "options": {
+            "children": [],
+             "label": "Capping Level",
+             "placeholder": "Capping Level",
+             "required": false,
+             "values":[ {"value": "Policy", "viewValue": "Policy"},
+                {"value": "L2", "viewValue": "Level 2"},
+                {"value": "L3", "viewValue": "Level 3"}]
+            }
+       }
+        
+   ]
